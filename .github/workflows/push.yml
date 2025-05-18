@@ -17,6 +17,7 @@ jobs:
         with:
           node-version: "22"
       - run: npm run lint
+      - run: npm run test
       - run: npm run build
       - run: |
           echo "tarball=$(npm --workspace check-engine-light pack)" >> "$GITHUB_OUTPUT"

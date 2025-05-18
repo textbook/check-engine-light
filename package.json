@@ -9,7 +9,7 @@
     "build": "npm --workspaces --if-present run build",
     "lint": "eslint .",
     "e2e": "DEBUG=cel:* npm --workspace check-engine-light start -- .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npm --workspaces --if-present run test"
   },
   "keywords": [],
   "author": "Jonathan Sharpe <mail@jonrshar.pe>",
