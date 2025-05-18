@@ -62,13 +62,11 @@ export default function checkEngineLight(
 	const mismatches = Object
 		.entries(packages)
 		.filter(([path]) => path !== "")
-		.map(([path, descriptor]): [string, Descriptor] => {
-			return [getName(path), descriptor];
-		})
-		.filter(([name, descriptor]): boolean => compatible([name, descriptor], targetEngine, { dev, engine }));
+		.map(([path, descriptor]): [string, Descriptor] => [getName(path), descriptor])
+		.filter(([name, descriptor]) => compatible([name, descriptor], targetEngine, { dev, engine }));
 
 	if (mismatches.length > 0) {
-		throw new Error(`incompatible dependencies: ${mismatches.map(([name]): string => name).join(", ")}`);
+		throw new Error(`incompatible dependencies: ${mismatches.map(([name]) => name).join(", ")}`);
 	}
 }
 
