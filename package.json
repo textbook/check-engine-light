@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "type": "module",
   "engines": {
-    "node": ">=20.11"
+    "node": "^20.11 || >=21.2.0"
   },
   "scripts": {
     "build": "npm --workspaces --if-present run build",
