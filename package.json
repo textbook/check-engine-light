@@ -1,8 +1,10 @@
 {
   "name": "@textbook/check-englne-light",
   "version": "0.1.0",
-  "main": "index.js",
+  "type": "module",
   "scripts": {
+    "build": "npm --workspaces --if-present run build",
+    "lint": "eslint .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -11,5 +13,13 @@
   "description": "",
   "workspaces": [
     "packages/check-engine-light"
-  ]
+  ],
+  "devDependencies": {
+    "@codeyourfuture/eslint-config-standard": "^7.0.0",
+    "@tsconfig/node20": "^20.1.5",
+    "@types/node": "^20.17.47",
+    "eslint": "^9.27.0",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.32.1"
+  }
 }
