@@ -1,2 +1,4 @@
+check-engine-light*.tgz
 node_modules/
 packages/*/lib/
+packages/*/LICENSE

@@ -1,0 +1,28 @@
+---
+name: Node.js CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    outputs:
+      tarball: ${{ steps.pack.outputs.tarball }}
+    steps:
+      - uses: textbook/take-action@nodejs
+        with:
+          node-version: "22"
+      - run: npm run lint
+      - run: npm run build
+      - run: |
+          echo "tarball=$(npm --workspace check-engine-light pack)" >> "$GITHUB_OUTPUT"
+        id: pack
+      - uses: actions/upload-artifact@v4
+        with:
+          name: package
+          path: ${{ steps.pack.outputs.tarball }}
+          if-no-files-found: error
