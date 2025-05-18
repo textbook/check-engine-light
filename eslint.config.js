@@ -17,6 +17,20 @@ export default config(
 				tsconfigRootDir: import.meta.dirname,
 			},
 		},
+		rules: {
+			"@typescript-eslint/no-floating-promises": [
+				"error",
+				{
+					allowForKnownSafeCalls: [
+						{ from: "package", name: ["describe", "it"], package: "node:test" },
+					],
+				},
+			],
+			"@typescript-eslint/no-confusing-void-expression": [
+				"off",
+				{ ignoreArrowShorthand: true },
+			],
+		},
 	},
 	{
 		ignores: ["packages/*/lib/"],
