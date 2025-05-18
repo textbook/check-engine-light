@@ -13,7 +13,7 @@
   ],
   "scripts": {
     "build": "tsc --project tsconfig.build.json",
-    "postbuild": "cp ../../{LICENSE,README.md} .",
+    "postbuild": "cp ../../LICENSE ../../README.md .",
     "prestart": "npm run build",
     "start": "node lib/cli.js",
     "test": "node --experimental-strip-types --test src/*.test.ts"
