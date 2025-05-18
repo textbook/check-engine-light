@@ -50,6 +50,7 @@ jobs:
           name: package
       - run: |
           npm init --yes
-          npm pkg set 'engines.node=^22'
+          npm pkg set 'type=module'
+          npm pkg set 'engines.node=>=20.11'
           npm install ${{ needs.build.outputs.tarball }}
           npx check-engine-light .
