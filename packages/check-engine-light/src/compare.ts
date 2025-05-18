@@ -16,7 +16,7 @@ export function compatible([name, descriptor]: [string, Descriptor], spec: strin
 	try {
 		pkgEngine = getEngine(engine, descriptor);
 	} catch {
-		debug("skipping %s (no engine requirement)", name, engine);
+		debug("skipping %s (no engine requirement)", name);
 		return false;
 	}
 

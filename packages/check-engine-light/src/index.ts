@@ -57,7 +57,7 @@ export default function checkEngineLight(
 	debug("processing lockfile version %d", lockfileVersion);
 
 	const targetEngine = getEngine(engine, packages[""]);
-	debug('using engine specification "%s" (minimum %s)', targetEngine);
+	debug('using engine specification "%s"', targetEngine);
 
 	const mismatches = Object
 		.entries(packages)
