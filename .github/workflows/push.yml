@@ -18,6 +18,7 @@ jobs:
           node-version: "22"
       - run: npm run lint
       - run: npm run test:cover
+      - run: npm run e2e
       - run: npm run build
       - run: |
           echo "tarball=$(npm --workspace check-engine-light pack)" >> "$GITHUB_OUTPUT"
@@ -41,9 +42,8 @@ jobs:
             platform: "macos"
     runs-on: ${{ matrix.platform }}-latest
     steps:
-      - uses: textbook/take-action@nodejs
+      - uses: actions/setup-node@v4
         with:
-          checkout: false
           node-version: ${{ matrix.node }}
       - uses: actions/download-artifact@v4
         with:
