@@ -27,3 +27,27 @@ jobs:
           name: package
           path: ${{ steps.pack.outputs.tarball }}
           if-no-files-found: error
+  test:
+    needs: [ build ]
+    strategy:
+      matrix:
+        node: [ "20.11", "20", "22", "24" ]
+        platform: [ ubuntu ]
+        include:
+          - node: "22"
+            platform: "windows"
+          - node: "22"
+            platform: "macos"
+    runs-on: ${{ matrix.platform }}-latest
+    steps:
+      - uses: textbook/take-action@nodejs
+        with:
+          node-version: ${{ matrix.node }}
+      - uses: actions/download-artifact@v4
+        with:
+          name: package
+      - run: |
+          npm init --yes
+          npm pkg set 'engines.node=^22'
+          npm install ${{ needs.build.outputs.tarball }}
+          npx check-engine-light .

@@ -21,6 +21,7 @@
   },
   "author": "Jonathan Sharpe <mail@jonrshar.pe>",
   "license": "ISC",
+  "funding": "https://ko-fi.com/textbook",
   "description": "Ensure your dependencies match your engine requirements",
   "dependencies": {
     "debug": "^4.4.1",
