@@ -4,6 +4,7 @@
   "type": "module",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
+  "bin": "lib/cli.js",
   "engines": {
     "node": ">=20.11"
   },
@@ -12,13 +13,18 @@
   ],
   "scripts": {
     "build": "tsc --project tsconfig.build.json",
-    "postbuild": "cp ../../LICENSE .",
+    "postbuild": "cp ../../{LICENSE,README.md} .",
     "prestart": "npm run build",
     "start": "node lib/cli.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
   "author": "Jonathan Sharpe <mail@jonrshar.pe>",
   "license": "ISC",
-  "description": ""
+  "description": "Ensure your dependencies match your engine requirements",
+  "dependencies": {
+    "debug": "^4.4.1"
+  },
+  "devDependencies": {
+    "@types/debug": "^4.1.12"
+  }
 }

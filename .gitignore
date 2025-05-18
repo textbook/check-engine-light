@@ -2,3 +2,4 @@ check-engine-light*.tgz
 node_modules/
 packages/*/lib/
 packages/*/LICENSE
+packages/check-engine-light/README.md
