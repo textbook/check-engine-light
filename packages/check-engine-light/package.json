@@ -1,5 +1,5 @@
 {
-  "name": "@textbook/check-englne-light",
+  "name": "check-engine-light",
   "version": "0.1.0",
   "main": "index.js",
   "scripts": {
@@ -8,8 +8,5 @@
   "keywords": [],
   "author": "Jonathan Sharpe <mail@jonrshar.pe>",
   "license": "ISC",
-  "description": "",
-  "workspaces": [
-    "packages/check-engine-light"
-  ]
+  "description": ""
 }
