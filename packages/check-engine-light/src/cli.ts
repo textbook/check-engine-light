@@ -15,20 +15,26 @@ const enum ExitCode {
 const debug = createDebug("cel:cli");
 
 const HELP = `
-usage: ${(process.env.npm_lifecycle_script ?? "check-engine-light")} [-h] [-v] directory
+usage: check-engine-light [-h] [-d] [-e ENGINE] [-f FILE] [-v] directory
 
 positional arguments:
-  directory      the directory containing the package{,-lock}.json to analyse
+  directory             the directory containing the lock file to analyse
 
 options:
-  -h, --help     show this help message and exit
-  -v, --version  show the current version and exit
+  -h, --help            show this help message and exit
+  -d, --dev             whether to include dev dependencies
+  -e ENGINE, --engine ENGINE
+                        which engine to check (defaults to: "node")
+  -f FILE, --file FILE  which file to analyse (defaults to: "package-lock.json")
+  -v, --version         show the current version and exit
 `.trim();
-const { INIT_CWD } = process.env;
 
-const { positionals: [directory], values: { help, version } } = parseArgs({
+const { positionals: [directory], values: { dev, engine, file, help, version } } = parseArgs({
 	allowPositionals: true,
 	options: {
+		dev: { default: false, short: "d", type: "boolean" },
+		engine: { default: "node", short: "e", type: "string" },
+		file: { default: "package-lock.json", short: "f", type: "string" },
 		help: { default: false, short: "h", type: "boolean" },
 		version: { default: false, short: "v", type: "boolean" },
 	},
@@ -51,20 +57,10 @@ if (!directory) {
 	process.exit(ExitCode.FAILURE);
 }
 
-if (!INIT_CWD) {
-	console.error("error: missing required environment variable INIT_CWD");
-	process.exit(ExitCode.FAILURE);
-}
-
 try {
-	const baseDir = resolve(INIT_CWD, directory);
-
-	debug("loading package{,-lock}.json from %s", baseDir);
-
-	checkEngineLight(
-		await readJson<PackageFile>(join(baseDir, "package.json")),
-		await readJson<LockFile>(join(baseDir, "package-lock.json")),
-	);
+	const baseDir = resolve(process.env.INIT_CWD ?? "", directory);
+	debug("loading %s from %s", file, baseDir);
+	checkEngineLight(await readJson<LockFile>(join(baseDir, file)), { dev, engine });
 } catch (err) {
 	console.error(err);
 	process.exit(ExitCode.FAILURE);

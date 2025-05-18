@@ -1,5 +1,5 @@
 {
-  "name": "@textbook/check-englne-light",
+  "name": "@textbook/check-engine-light",
   "version": "0.1.0",
   "type": "module",
   "engines": {
@@ -9,7 +9,7 @@
     "build": "npm --workspaces --if-present run build",
     "lint": "eslint .",
     "e2e": "DEBUG=cel:* npm --workspace check-engine-light start -- .",
-    "ship": "npm run lint && npm t && npm run e2e",
+    "ship": "npm run lint && npm run test:cover && npm run e2e",
     "test": "npm --workspaces --if-present run test",
     "test:cover": "npm --workspaces --if-present run test:cover"
   },

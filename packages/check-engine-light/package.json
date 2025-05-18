@@ -23,9 +23,11 @@
   "license": "ISC",
   "description": "Ensure your dependencies match your engine requirements",
   "dependencies": {
-    "debug": "^4.4.1"
+    "debug": "^4.4.1",
+    "semver": "^7.7.2"
   },
   "devDependencies": {
-    "@types/debug": "^4.1.12"
+    "@types/debug": "^4.1.12",
+    "@types/semver": "^7.7.0"
   }
 }
