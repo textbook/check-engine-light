@@ -28,12 +28,13 @@ jobs:
           name: package
           path: ${{ steps.pack.outputs.tarball }}
           if-no-files-found: error
+
   test:
     needs: [ build ]
     strategy:
       fail-fast: false
       matrix:
-        node: [ "20.11", "20", "22", "24" ]
+        node: [ "20.11", "20", "21.2", "22", "24" ]
         platform: [ ubuntu ]
         include:
           - node: "22"
@@ -52,7 +53,7 @@ jobs:
         run: |
           npm init --yes
           npm pkg set 'type=module'
-          npm pkg set 'engines.node=>=20.11'
+          npm pkg set 'engines.node=^20.11 || >=21.2'
           npm install ${{ needs.build.outputs.tarball }}
           npx check-engine-light .
         env:
