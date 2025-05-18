@@ -8,10 +8,10 @@ interface PackageFile {
 
 const enum ExitCode {
 	SUCCESS = 0,
-	FAILURE = 1
+	FAILURE = 1,
 }
 
-const { positionals: [target], values: { version } } = parseArgs({
+const { values: { version } } = parseArgs({
 	allowPositionals: true,
 	options: { version: { type: "boolean", default: false, short: "v" } },
 });
