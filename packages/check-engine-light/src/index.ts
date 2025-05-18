@@ -3,15 +3,6 @@ import createDebug from "debug";
 import { compatible, getEngine } from "./compare.ts";
 
 const debug = createDebug("cel:idx");
-
-/**
- * @link https://docs.npmjs.com/cli/v10/configuring-npm/package-json
- */
-export interface PackageFile {
-	version: string;
-	engines?: Record<string, string>;
-}
-
 /**
  * @link https://docs.npmjs.com/cli/v9/configuring-npm/package-lock-json#file-format
  */

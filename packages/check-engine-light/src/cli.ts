@@ -5,7 +5,7 @@ import { parseArgs } from "node:util";
 
 import createDebug from "debug";
 
-import type { LockFile, PackageFile } from "./index.js";
+import type { LockFile } from "./index.js";
 import checkEngineLight from "./index.js";
 
 const enum ExitCode {
@@ -48,7 +48,7 @@ if (help) {
 
 if (version) {
 	const packageFile = resolve(import.meta.dirname, "..", "package.json");
-	const { version } = await readJson<PackageFile>(packageFile);
+	const { version } = await readJson<{ version: string }>(packageFile);
 	console.log(version);
 	process.exit(ExitCode.SUCCESS);
 }
