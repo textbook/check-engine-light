@@ -16,7 +16,8 @@
     "postbuild": "cp ../../LICENSE ../../README.md .",
     "prestart": "npm run build",
     "start": "node lib/cli.js",
-    "test": "node --experimental-strip-types --test src/*.test.ts"
+    "test": "node --experimental-strip-types --test",
+    "test:cover": "npm run test --  --experimental-test-coverage"
   },
   "author": "Jonathan Sharpe <mail@jonrshar.pe>",
   "license": "ISC",

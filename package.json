@@ -10,7 +10,8 @@
     "lint": "eslint .",
     "e2e": "DEBUG=cel:* npm --workspace check-engine-light start -- .",
     "ship": "npm run lint && npm t && npm run e2e",
-    "test": "npm --workspaces --if-present run test"
+    "test": "npm --workspaces --if-present run test",
+    "test:cover": "npm --workspaces --if-present run test:cover"
   },
   "keywords": [],
   "author": "Jonathan Sharpe <mail@jonrshar.pe>",
