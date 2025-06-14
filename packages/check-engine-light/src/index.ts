@@ -35,19 +35,20 @@ export interface Descriptor {
 export interface Options {
 	dev: boolean;
 	engine: string;
+	workspace: string;
 }
 
 export default function checkEngineLight(
 	{ lockfileVersion, packages }: Pick<LockFile, "lockfileVersion" | "packages">,
-	{ dev = false, engine = "node" }: Partial<Options> = {},
+	{ dev = false, engine = "node", workspace = "" }: Partial<Options> = {},
 ): void {
-	debug("checking with options %o", { dev, engine });
+	debug("checking with options %o", { dev, engine, workspace });
 	if (![2, 3].includes(lockfileVersion)) {
 		throw new Error(`unsupported lockfile version: ${lockfileVersion.toFixed(0)}`);
 	}
 	debug("processing lockfile version %d", lockfileVersion);
 
-	const targetEngine = getEngine(engine, packages[""]);
+	const targetEngine = getEngine(engine, packages[workspace]);
 	debug('using engine specification "%s"', targetEngine);
 
 	const mismatches = Object

@@ -16,7 +16,7 @@ const enum ExitCode {
 const debug = createDebug("cel:cli");
 
 const HELP = `
-usage: check-engine-light [-h] [-d] [-e ENGINE] [-f FILE] [-v] directory
+usage: check-engine-light [-h] [-d] [-e ENGINE] [-f FILE] [-v] [-w WORKSPACE] directory
 
 positional arguments:
   directory             the directory containing the lock file to analyse
@@ -28,9 +28,11 @@ options:
                         which engine to check (defaults to: "node")
   -f FILE, --file FILE  which file to analyse (defaults to: "package-lock.json")
   -v, --version         show the current version and exit
+  -w WORKSPACE, --workspace WORKSPACE
+                        which workspace package to analyse (defaults to: "", the root package)
 `.trim();
 
-const { positionals: [directory], values: { dev, engine, file, help, version } } = parseArgs({
+const { positionals: [directory], values: { dev, engine, file, help, version, workspace } } = parseArgs({
 	allowPositionals: true,
 	options: {
 		dev: { default: false, short: "d", type: "boolean" },
@@ -38,6 +40,7 @@ const { positionals: [directory], values: { dev, engine, file, help, version } }
 		file: { default: "package-lock.json", short: "f", type: "string" },
 		help: { default: false, short: "h", type: "boolean" },
 		version: { default: false, short: "v", type: "boolean" },
+		workspace: { default: "", short: "w", type: "string" },
 	},
 });
 
@@ -61,7 +64,7 @@ if (!directory) {
 try {
 	const baseDir = resolve(process.env.INIT_CWD ?? "", directory);
 	debug("loading %s from %s", file, baseDir);
-	checkEngineLight(await readJson<LockFile>(join(baseDir, file)), { dev, engine });
+	checkEngineLight(await readJson<LockFile>(join(baseDir, file)), { dev, engine, workspace });
 } catch (err) {
 	console.error(err);
 	process.exit(ExitCode.FAILURE);

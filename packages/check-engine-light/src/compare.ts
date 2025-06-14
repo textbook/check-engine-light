@@ -5,7 +5,7 @@ import type { Descriptor, Options } from "./index.ts";
 
 const debug = createDebug("cel:cmp");
 
-export function compatible([name, descriptor]: [string, Descriptor], spec: string, { engine, dev }: Options) {
+export function compatible([name, descriptor]: [string, Descriptor], spec: string, { engine, dev }: Pick<Options, "dev" | "engine">) {
 	let pkgEngine: string;
 
 	if (descriptor.dev === true && !dev) {

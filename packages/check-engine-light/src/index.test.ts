@@ -57,6 +57,14 @@ describe("checkEngineLight", () => {
 		lockfile.packages[""].engines!.node = "^20.9";
 		assert.throws(() => checkEngineLight(lockfile, { dev: true }));
 	});
+
+	it("works with workspace packages", () => {
+		const workspace = "test/package";
+		assert.doesNotThrow(() => checkEngineLight({
+			lockfileVersion: 3,
+			packages: { [workspace]: createPackage({ engines: { node: "*" } }) },
+		}, { workspace }));
+	});
 });
 
 function createPackage(overrides: Partial<LockFile["packages"][string]> = {}): LockFile["packages"][string] {

@@ -27,6 +27,11 @@ parser.add_argument(
     action="store_true",
     help="show the current version and exit",
 )
+parser.add_argument(
+    "-w", "--workspace",
+    default="",
+    help="which workspace package to analyse (defaults to: \"\", the root package)",
+)
 
 if __name__ == "__main__":
     parser.parse_args()

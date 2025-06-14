@@ -6,7 +6,7 @@ Ensure your dependencies match your engine requirements.
 
 ```shell
 $ npx check-engine-light --help
-usage: check-engine-light [-h] [-d] [-e ENGINE] [-f FILE] [-v] directory
+usage: check-engine-light [-h] [-d] [-e ENGINE] [-f FILE] [-v] [-w WORKSPACE] directory
 
 positional arguments:
   directory             the directory containing the lock file to analyse
@@ -18,4 +18,6 @@ options:
                         which engine to check (defaults to: "node")
   -f FILE, --file FILE  which file to analyse (defaults to: "package-lock.json")
   -v, --version         show the current version and exit
+  -w WORKSPACE, --workspace WORKSPACE
+                        which workspace package to analyse (defaults to: "", the root package)
 ```
