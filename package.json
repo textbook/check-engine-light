@@ -1,10 +1,6 @@
 {
-  "name": "@textbook/check-engine-light",
-  "version": "0.2.3",
+  "name": "check-engine-light",
   "type": "module",
-  "engines": {
-    "node": "^20.11 || >=21.2"
-  },
   "scripts": {
     "build": "npm --workspaces --if-present run build",
     "lint": "eslint .",
@@ -15,7 +11,7 @@
   },
   "keywords": [],
   "author": "Jonathan Sharpe <mail@jonrshar.pe>",
-  "license": "ISC",
+  "license": "UNLICENSED",
   "description": "",
   "workspaces": [
     "packages/check-engine-light"

@@ -18,9 +18,8 @@ ROOT="$HERE/.."
 
 commitAndTag() {
   git add \
-    "$ROOT/package.json" \
     "$ROOT/package-lock.json" \
-    "$ROOT/packages/*/package.json"
+    "$ROOT/packages/check-engine-light/package.json"
   git commit --message "$1"
   git tag "$1"
 }
@@ -29,7 +28,5 @@ useNpm() {
   npm --prefix="$ROOT" "$@"
 }
 
-VERSION="$(useNpm version --no-git-tag-version "$1")"
-useNpm --workspace='check-engine-light' version "$VERSION"
-useNpm install --package-lock-only
+VERSION="$(useNpm version --workspace 'packages/check-engine-light' "$1" | sed -n '2p')"
 commitAndTag "$VERSION"

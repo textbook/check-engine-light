@@ -17,7 +17,7 @@
   ],
   "scripts": {
     "build": "tsc --project tsconfig.build.json",
-    "postbuild": "cp ../../LICENSE ../../README.md .",
+    "postbuild": "cp ../../README.md .",
     "prestart": "npm run build",
     "start": "node lib/cli.js -w packages/check-engine-light",
     "test": "node --experimental-strip-types --test",
