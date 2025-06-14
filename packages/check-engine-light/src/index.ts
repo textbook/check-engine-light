@@ -44,21 +44,29 @@ export default function checkEngineLight(
 ): void {
 	debug("checking with options %o", { dev, engine, workspace });
 	if (![2, 3].includes(lockfileVersion)) {
-		throw new Error(`unsupported lockfile version: ${lockfileVersion.toFixed(0)}`);
+		throw new Error(
+			`unsupported lockfile version: ${lockfileVersion.toFixed(0)}`,
+		);
 	}
 	debug("processing lockfile version %d", lockfileVersion);
 
 	const targetEngine = getEngine(engine, packages[workspace]);
 	debug('using engine specification "%s"', targetEngine);
 
-	const mismatches = Object
-		.entries(packages)
+	const mismatches = Object.entries(packages)
 		.filter(([path]) => path !== "")
-		.map(([path, descriptor]): [string, Descriptor] => [getName(path), descriptor])
-		.filter(([name, descriptor]) => compatible([name, descriptor], targetEngine, { dev, engine }));
+		.map(([path, descriptor]): [string, Descriptor] => [
+			getName(path),
+			descriptor,
+		])
+		.filter(([name, descriptor]) =>
+			compatible([name, descriptor], targetEngine, { dev, engine }),
+		);
 
 	if (mismatches.length > 0) {
-		throw new Error(`incompatible dependencies: ${mismatches.map(([name]) => name).join(", ")}`);
+		throw new Error(
+			`incompatible dependencies: ${mismatches.map(([name]) => name).join(", ")}`,
+		);
 	}
 }
 

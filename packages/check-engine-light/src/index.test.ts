@@ -17,31 +17,39 @@ describe("checkEngineLight", () => {
 	it("errors if no engines specification to meet", () => {
 		const name = "test-package";
 		assert.throws(
-			() => checkEngineLight({
-				lockfileVersion: 2,
-				packages: { "": createPackage({ name: name }) },
-			}),
+			() =>
+				checkEngineLight({
+					lockfileVersion: 2,
+					packages: { "": createPackage({ name: name }) },
+				}),
 			{ message: "missing field: $.engines" },
 		);
 	});
 
 	it("returns if no mismatched packages", () => {
-		assert.doesNotThrow(() => checkEngineLight({
-			lockfileVersion: 3,
-			packages: { "": createPackage({ engines: { node: "*" } }) },
-		}));
+		assert.doesNotThrow(() =>
+			checkEngineLight({
+				lockfileVersion: 3,
+				packages: { "": createPackage({ engines: { node: "*" } }) },
+			}),
+		);
 	});
 
 	it("errors if mismatched packages", () => {
 		assert.throws(
-			() => checkEngineLight({
-				lockfileVersion: 2,
-				packages: {
-					"": createPackage({ engines: { node: "^20.9" } }),
-					"node_modules/matching": createPackage({ engines: { node: ">=18" } }),
-					"node_modules/not-matching": createPackage({ engines: { node: "^22" } }),
-				},
-			}),
+			() =>
+				checkEngineLight({
+					lockfileVersion: 2,
+					packages: {
+						"": createPackage({ engines: { node: "^20.9" } }),
+						"node_modules/matching": createPackage({
+							engines: { node: ">=18" },
+						}),
+						"node_modules/not-matching": createPackage({
+							engines: { node: "^22" },
+						}),
+					},
+				}),
 			{ message: "incompatible dependencies: not-matching" },
 		);
 	});
@@ -60,14 +68,21 @@ describe("checkEngineLight", () => {
 
 	it("works with workspace packages", () => {
 		const workspace = "test/package";
-		assert.doesNotThrow(() => checkEngineLight({
-			lockfileVersion: 3,
-			packages: { [workspace]: createPackage({ engines: { node: "*" } }) },
-		}, { workspace }));
+		assert.doesNotThrow(() =>
+			checkEngineLight(
+				{
+					lockfileVersion: 3,
+					packages: { [workspace]: createPackage({ engines: { node: "*" } }) },
+				},
+				{ workspace },
+			),
+		);
 	});
 });
 
-function createPackage(overrides: Partial<LockFile["packages"][string]> = {}): LockFile["packages"][string] {
+function createPackage(
+	overrides: Partial<LockFile["packages"][string]> = {},
+): LockFile["packages"][string] {
 	return {
 		link: false,
 		resolved: "",

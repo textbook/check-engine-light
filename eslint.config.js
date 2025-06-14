@@ -1,16 +1,17 @@
 import cyf from "@codeyourfuture/eslint-config-standard";
+import prettier from "eslint-config-prettier";
 import { config, configs as ts } from "typescript-eslint";
 
 export default config(
+	{
+		linterOptions: { reportUnusedDisableDirectives: "error" },
+	},
 	cyf.configs.standard,
 	ts.strict,
 	ts.stylistic,
 	{
 		files: ["**/*.ts"],
-		extends: [
-			ts.strictTypeCheckedOnly,
-			ts.stylisticTypeCheckedOnly,
-		],
+		extends: [ts.strictTypeCheckedOnly, ts.stylisticTypeCheckedOnly],
 		languageOptions: {
 			parserOptions: {
 				projectService: true,
@@ -32,6 +33,7 @@ export default config(
 			],
 		},
 	},
+	prettier,
 	{
 		ignores: ["packages/*/lib/"],
 	},

@@ -1,44 +1,44 @@
 {
-  "name": "check-engine-light",
-  "version": "0.3.0",
-  "publishConfig": {
-    "access": "public",
-    "registry": "https://registry.npmjs.org/"
-  },
-  "type": "module",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
-  "bin": "lib/cli.js",
-  "engines": {
-    "node": "^20.11 || >=21.2"
-  },
-  "files": [
-    "lib/"
-  ],
-  "scripts": {
-    "build": "tsc --project tsconfig.build.json",
-    "postbuild": "cp ../../README.md .",
-    "prestart": "npm run build",
-    "start": "node lib/cli.js -w packages/check-engine-light",
-    "test": "node --experimental-strip-types --test",
-    "test:cover": "npm run test --  --experimental-test-coverage"
-  },
-  "author": "Jonathan Sharpe <mail@jonrshar.pe>",
-  "license": "ISC",
-  "funding": "https://ko-fi.com/textbook",
-  "description": "Ensure your dependencies match your engine requirements",
-  "dependencies": {
-    "debug": "^4.4.1",
-    "semver": "^7.7.2"
-  },
-  "devDependencies": {
-    "@types/debug": "^4.1.12",
-    "@types/semver": "^7.7.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/textbook/check-engine-light.git"
-  },
-  "bugs": "https://github.com/textbook/check-engine-light/issues",
-  "homepage": "https://github.com/textbook/check-engine-light#readme"
+	"name": "check-engine-light",
+	"version": "0.3.0",
+	"publishConfig": {
+		"access": "public",
+		"registry": "https://registry.npmjs.org/"
+	},
+	"type": "module",
+	"main": "lib/index.js",
+	"types": "lib/index.d.ts",
+	"bin": "lib/cli.js",
+	"engines": {
+		"node": "^20.11 || >=21.2"
+	},
+	"files": [
+		"lib/"
+	],
+	"scripts": {
+		"build": "tsc --project tsconfig.build.json",
+		"postbuild": "cp ../../README.md .",
+		"prestart": "npm run build",
+		"start": "node lib/cli.js -w packages/check-engine-light",
+		"test": "node --experimental-strip-types --test",
+		"test:cover": "npm run test --  --experimental-test-coverage"
+	},
+	"author": "Jonathan Sharpe <mail@jonrshar.pe>",
+	"license": "ISC",
+	"funding": "https://ko-fi.com/textbook",
+	"description": "Ensure your dependencies match your engine requirements",
+	"dependencies": {
+		"debug": "^4.4.1",
+		"semver": "^7.7.2"
+	},
+	"devDependencies": {
+		"@types/debug": "^4.1.12",
+		"@types/semver": "^7.7.0"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/textbook/check-engine-light.git"
+	},
+	"bugs": "https://github.com/textbook/check-engine-light/issues",
+	"homepage": "https://github.com/textbook/check-engine-light#readme"
 }

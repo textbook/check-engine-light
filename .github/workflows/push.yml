@@ -3,10 +3,10 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ main ]
-    tags: [ "v*" ]
+    branches: [main]
+    tags: ["v*"]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   build:
@@ -31,12 +31,12 @@ jobs:
           if-no-files-found: error
 
   test:
-    needs: [ build ]
+    needs: [build]
     strategy:
       fail-fast: false
       matrix:
-        node: [ "20.11", "20", "21.2", "22", "24" ]
-        platform: [ ubuntu ]
+        node: ["20.11", "20", "21.2", "22", "24"]
+        platform: [ubuntu]
         include:
           - node: "22"
             platform: "windows"
@@ -61,7 +61,7 @@ jobs:
           DEBUG: cel:*
 
   deploy-npm:
-    needs: [ build, test ]
+    needs: [build, test]
     runs-on: ubuntu-24.04
     if: startsWith(github.ref, 'refs/tags/v')
     environment:
@@ -83,7 +83,7 @@ jobs:
       - run: npm publish --provenance '${{ needs.build.outputs.tarball }}'
 
   deploy-gh:
-    needs: [ build, test ]
+    needs: [build, test]
     runs-on: ubuntu-latest
     if: startsWith(github.ref, 'refs/tags/v')
     environment:

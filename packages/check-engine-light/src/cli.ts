@@ -32,7 +32,10 @@ options:
                         which workspace package to analyse (defaults to: "", the root package)
 `.trim();
 
-const { positionals: [directory], values: { dev, engine, file, help, version, workspace } } = parseArgs({
+const {
+	positionals: [directory],
+	values: { dev, engine, file, help, version, workspace },
+} = parseArgs({
 	allowPositionals: true,
 	options: {
 		dev: { default: false, short: "d", type: "boolean" },
@@ -64,7 +67,11 @@ if (!directory) {
 try {
 	const baseDir = resolve(process.env.INIT_CWD ?? "", directory);
 	debug("loading %s from %s", file, baseDir);
-	checkEngineLight(await readJson<LockFile>(join(baseDir, file)), { dev, engine, workspace });
+	checkEngineLight(await readJson<LockFile>(join(baseDir, file)), {
+		dev,
+		engine,
+		workspace,
+	});
 } catch (err) {
 	console.error(err);
 	process.exit(ExitCode.FAILURE);

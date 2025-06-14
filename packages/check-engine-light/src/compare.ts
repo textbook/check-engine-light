@@ -5,7 +5,11 @@ import type { Descriptor, Options } from "./index.ts";
 
 const debug = createDebug("cel:cmp");
 
-export function compatible([name, descriptor]: [string, Descriptor], spec: string, { engine, dev }: Pick<Options, "dev" | "engine">) {
+export function compatible(
+	[name, descriptor]: [string, Descriptor],
+	spec: string,
+	{ engine, dev }: Pick<Options, "dev" | "engine">,
+) {
 	let pkgEngine: string;
 
 	if (descriptor.dev === true && !dev) {
@@ -24,12 +28,20 @@ export function compatible([name, descriptor]: [string, Descriptor], spec: strin
 		debug("%s %o compatible", name, { [engine]: pkgEngine });
 		return false;
 	} else {
-		console.error("%s %o incompatible with %o", name, { [engine]: pkgEngine }, { [engine]: spec });
+		console.error(
+			"%s %o incompatible with %o",
+			name,
+			{ [engine]: pkgEngine },
+			{ [engine]: spec },
+		);
 		return true;
 	}
 }
 
-export function getEngine(engine: string, { engines }: { engines?: Record<string, string> }): string {
+export function getEngine(
+	engine: string,
+	{ engines }: { engines?: Record<string, string> },
+): string {
 	if (!engines) {
 		throw new Error("missing field: $.engines");
 	}
