@@ -6,7 +6,7 @@ Ensure your dependencies match your engine requirements.
 
 ```shell
 $ npx check-engine-light --help
-usage: check-engine-light [-h] [-d] [-e ENGINE] [-f FILE] [-v] [-w WORKSPACE] directory
+usage: check-engine-light [-h] [-d] [-e ENGINE] [-f FILE] [-v] [-w WORKSPACE] [directory]
 
 positional arguments:
   directory             the directory containing the lock file to analyse

@@ -5,7 +5,9 @@ parser = argparse.ArgumentParser(
 )
 parser.add_argument(
     "directory",
+    default=".",
     help="the directory containing the lock file to analyse",
+    nargs="?",
 )
 parser.add_argument(
     "-d", "--dev",
@@ -34,4 +36,5 @@ parser.add_argument(
 )
 
 if __name__ == "__main__":
-    parser.parse_args()
+    args = parser.parse_args()
+    print(args)

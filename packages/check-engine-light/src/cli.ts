@@ -33,7 +33,7 @@ options:
 `.trim();
 
 const {
-	positionals: [directory],
+	positionals: [directory = "."],
 	values: { dev, engine, file, help, version, workspace },
 } = parseArgs({
 	allowPositionals: true,
@@ -59,13 +59,8 @@ if (version) {
 	process.exit(ExitCode.SUCCESS);
 }
 
-if (!directory) {
-	console.error("error: the following arguments are required: directory");
-	process.exit(ExitCode.FAILURE);
-}
-
 try {
-	const baseDir = resolve(process.env.INIT_CWD ?? "", directory);
+	const baseDir = resolve(process.env.INIT_CWD ?? process.cwd(), directory);
 	debug("loading %s from %s", file, baseDir);
 	checkEngineLight(await readJson<LockFile>(join(baseDir, file)), {
 		dev,
