@@ -1,8 +1,9 @@
+import { defineConfig, globalIgnores } from "eslint/config";
 import cyf from "@codeyourfuture/eslint-config-standard";
 import prettier from "eslint-config-prettier";
-import { config, configs as ts } from "typescript-eslint";
+import { configs as ts } from "typescript-eslint";
 
-export default config(
+export default defineConfig(
 	{
 		linterOptions: { reportUnusedDisableDirectives: "error" },
 	},
@@ -34,7 +35,5 @@ export default config(
 		},
 	},
 	prettier,
-	{
-		ignores: ["packages/*/lib/"],
-	},
+	globalIgnores(["packages/*/lib/"]),
 );
